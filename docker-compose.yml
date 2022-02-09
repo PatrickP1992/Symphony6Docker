@@ -3,30 +3,30 @@ version: "3"
 
 services:
   php-apache:
-    container_name: "symfony-apache-php"
+    container_name: "${CONTAINER_NAME_PREFIX}-apache-php"
     build: ./docker/php-apache
     volumes:
-      - ./app:/var/www/html
+      - ${PATH_TO_SYMFONY_PROJECT}:/var/www/html
     ports:
       - 80:80
 
   db:
-    container_name: "symfony-mariadb"
+    container_name: "${CONTAINER_NAME_PREFIX}-mariadb"
     image: mariadb:10.7
     restart: always
     environment:
-      - MARIADB_ROOT_USER=root
+      - MARIADB_ROOT_USER=${ROOT_USER}
       - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
-      - MARIADB_USER=inventory_user
-      - MARIADB_PASSWORD=jasdkjqh3jHSJKAJ%ssjdna
-      - MARIADB_DATABASE=inventory_db
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+      - MARIADB_DATABASE=${DB_NAME}
     volumes:
-      - ./app/var/db-data:/var/lib/mysql:rw
+      - ${PATH_TO_SYMFONY_PROJECT}/var/db_data:/var/lib/mysql:rw
     ports:
       - 3306:3306
 
   adminer:
-    container_name: "symfony-adminer"
+    container_name: "${CONTAINER_NAME_PREFIX}-adminer"
     image: adminer
     restart: always
     ports:
