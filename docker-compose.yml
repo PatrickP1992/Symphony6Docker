@@ -1,0 +1,33 @@
+---
+version: "3"
+
+services:
+  php-apache:
+    container_name: "symfony-apache-php"
+    build: ./docker/php-apache
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - 80:80
+
+  db:
+    container_name: "symfony-mariadb"
+    image: mariadb:10.7
+    restart: always
+    environment:
+      - MARIADB_ROOT_USER=root
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
+      - MARIADB_USER=inventory_user
+      - MARIADB_PASSWORD=jasdkjqh3jHSJKAJ%ssjdna
+      - MARIADB_DATABASE=inventory_db
+    volumes:
+      - ./app/var/db-data:/var/lib/mysql:rw
+    ports:
+      - 3306:3306
+
+  adminer:
+    container_name: "symfony-adminer"
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
