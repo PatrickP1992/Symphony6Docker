@@ -21,7 +21,7 @@ services:
       - MARIADB_PASSWORD=${DB_PASSWORD}
       - MARIADB_DATABASE=${DB_NAME}
     volumes:
-      - ${PATH_TO_SYMFONY_PROJECT}/var/db_data:/var/lib/mysql:rw
+      - ${PATH_TO_DB_DATA}:/var/lib/mysql:rw
     ports:
       - 3306:3306
 
