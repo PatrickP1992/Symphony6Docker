@@ -12,8 +12,7 @@ services:
 
   db:
     container_name: "${CONTAINER_NAME_PREFIX}-mariadb"
-    image: mariadb:10.7
-    restart: always
+    image: mariadb:latest
     environment:
       - MARIADB_ROOT_USER=${ROOT_USER}
       - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=yes
