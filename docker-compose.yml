@@ -27,6 +27,5 @@ services:
   adminer:
     container_name: "${CONTAINER_NAME_PREFIX}-adminer"
     image: adminer
-    restart: always
     ports:
       - 8080:8080
