@@ -20,7 +20,7 @@ services:
       - MARIADB_PASSWORD=${DB_PASSWORD}
       - MARIADB_DATABASE=${DB_NAME}
     volumes:
-      - ${PATH_TO_DB_DATA}:/var/lib/mysql:rw
+      - db:/var/lib/mysql
     ports:
       - "3306:3306"
 
@@ -36,3 +36,5 @@ services:
     image: adminer
     ports:
       - "8080:8080"
+volumes:
+  db:
